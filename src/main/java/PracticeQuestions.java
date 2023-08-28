@@ -122,6 +122,14 @@ public class PracticeQuestions {
         Date dd = new Date(ts);
         SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         System.out.println(dt.format(dd));
+
+        MyStack obj = new MyStack();
+        obj.push(1);
+        obj.push(2);
+        int param_2 = obj.top();
+        int param_3 = obj.pop();
+        int param_6 = obj.pop();
+        boolean param_4 = obj.empty();
     }
     public int size = 0;
     public int solve(int[] A, int[] B) {
