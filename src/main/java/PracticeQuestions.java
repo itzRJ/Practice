@@ -1283,5 +1283,71 @@ public class PracticeQuestions {
         }
         return res;
     }
+
+    /**
+     * Starting from right taking it as centre, spread left and right to find palindromes and find the max length
+     * sub string palindrome.
+     *
+     * @param s input string
+     * @return Longest Palindromic SubString
+     */
+    public String longestPalindromicSubString(String s)
+    {
+        int length = 0;
+        int max_length = 0;
+        int substr_sp = -1;
+        int substr_ep = -1;
+        int sp = -1;
+        int ep = -1;
+
+        for(int i=s.length()-1; i>=0; i--){
+            sp = i;
+            ep = i;
+
+            while(sp>=0 && ep<=s.length()-1){
+                if(s.charAt(sp) == s.charAt(ep)){
+                    length = ((ep)-(sp))+1;
+                    if(length >= max_length){
+                        max_length = length;
+                        substr_sp = sp;
+                        substr_ep = ep;
+                    }
+                }
+                else
+                    break;
+
+                sp--;
+                ep++;
+            }
+        }
+
+
+        for(int i=s.length()-2; i>=0; i--){
+            sp = i;
+            ep = i+1;
+
+            while(sp>=0 && ep<=s.length()-1){
+                if(s.charAt(sp) == s.charAt(ep)){
+                    length = ((ep)-(sp))+1;
+                    if(length >= max_length){
+                        max_length = length;
+                        substr_sp = sp;
+                        substr_ep = ep;
+                    }
+                }else{
+                    break;
+                }
+                sp--;
+                ep++;
+            }
+        }
+
+
+        if(max_length == 1){
+            return s.charAt(0)+"";
+        }
+
+        return s.substring(substr_sp, substr_ep+1);
+    }
     
 }
