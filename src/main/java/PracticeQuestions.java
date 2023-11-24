@@ -1349,5 +1349,36 @@ public class PracticeQuestions {
 
         return s.substring(substr_sp, substr_ep+1);
     }
+
+    /**
+     * A substring of s is considered balanced if all zeroes are before ones and the number of zeroes
+     * is equal to the number of ones inside the substring.
+     * Notice that the empty substring is considered a balanced substring.
+     * @param s input string
+     * @return length of the longest balanced substring of s
+     */
+    public int findTheLongestBalancedSubstring(String s) {
+        int res = 0, c0 = 0, c1 = 0;
+        //iterating and counting 0 first and then 1 from left
+        for(int i = 0; i<s.length();)
+        {
+            while(i<s.length() && s.charAt(i) == '0')
+            {
+                c0++;
+                i++;
+            }
+            while(i<s.length() && s.charAt(i) == '1')
+            {
+                c1++;
+                i++;
+            }
+
+            res = Math.max(res, 2*(Math.min(c0, c1)));
+//            resetting for further iterations
+            c0 = 0;
+            c1 = 0;
+        }
+        return res;
+    }
     
 }
