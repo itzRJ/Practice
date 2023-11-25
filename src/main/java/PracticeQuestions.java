@@ -1380,5 +1380,35 @@ public class PracticeQuestions {
         }
         return res;
     }
+
+    /**
+     * Given two integers dividend and divisor, divide two integers without using
+     * multiplication, division, and mod operator
+     * @param dividend
+     * @param divisor
+     * @return quotient
+     */
+    public int divide(int dividend, int divisor) {
+        if(dividend == Integer.MIN_VALUE && divisor==-1) return Integer.MAX_VALUE;
+        boolean sign = dividend>0 ^ divisor>0;
+        int res = 0;
+        dividend = Math.abs(dividend);
+        divisor = Math.abs(divisor);
+        while(dividend - divisor >= 0) {
+            int temp = divisor;
+            int c=0;
+            while (dividend - temp >= 0) {
+                temp = temp << 1;
+                c++;
+            }
+            temp = divisor;
+            dividend = dividend - (temp << c-1);
+            res += 1 << c-1;
+        }
+
+        if(sign)
+            return -res;
+        return res;
+    }
     
 }
