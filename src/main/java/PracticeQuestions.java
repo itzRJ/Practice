@@ -1410,5 +1410,53 @@ public class PracticeQuestions {
             return -res;
         return res;
     }
+
+    /**
+     * Write a function to find the longest common prefix string amongst an array of strings.
+     * @param strs List of strings
+     * @return longestCommonPrefix
+     */
+    public String longestCommonPrefix(String[] strs) {
+        StringBuilder res = new StringBuilder();
+        //sorting array lexicographically and finding common prefix of first and last string
+        Arrays.sort(strs);
+        String s1 = strs[0], s2 = strs[strs.length - 1];
+        int i = 0;
+        while(i<s1.length() && i<s2.length())
+        {
+            if(s1.charAt(i) == s2.charAt(i))
+                res.append(s1.charAt(i++));
+            else
+                break;
+        }
+        return res.toString();
+    }
+
+    /**
+     * Given an integer array nums, return all the triplets summing to 0
+     * @param nums integer array
+     * @return unique triplets with sum 0
+     */
+    public List<List<Integer>> threeSum(int[] nums) {
+        Set<List<Integer>> res  = new HashSet<>();
+        if(nums.length==0)
+            return new ArrayList<>(res);
+        Arrays.sort(nums);
+        for(int i=0; i<nums.length-2;i++){
+            int j =i+1;
+            int k = nums.length-1;
+            while(j<k)
+            {
+                int sum = nums[i]+nums[j]+nums[k];
+                if(sum == 0)
+                    res.add(Arrays.asList(nums[i], nums[j++], nums[k--]));
+                else if (sum>0)
+                    k--;
+                else
+                    j++;
+            }
+        }
+        return new ArrayList<>(res);
+    }
     
 }
