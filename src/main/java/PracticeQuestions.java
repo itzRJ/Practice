@@ -1458,5 +1458,48 @@ public class PracticeQuestions {
         }
         return new ArrayList<>(res);
     }
+
+    /**
+     * Convert an Array Into a 2D Array With Conditions
+     * Sorting array to find frequency to find number of rows and filling accordingly
+     *
+     * @param nums input array
+     * @return 2D matrix satisfying all conditions
+     */
+    public List<List<Integer>> findMatrix(int[] nums) {
+        int minRows = 1, count = 1;
+        Arrays.sort(nums);
+
+        for(int i=1;i<nums.length;i++)
+        {
+            if (nums[i] == nums[i - 1])
+                count++;
+            else
+                count = 1;
+
+            minRows = Math.max(count, minRows);
+        }
+
+        List<List<Integer>> lRes = new ArrayList<>();
+        for(int i=0; i<minRows; i++)
+        {
+            lRes.add(new ArrayList<>());
+        }
+
+        int s = 0;
+        lRes.get(0).add(nums[s]);
+        for(int i=1; i<nums.length; i++)
+        {
+            if(nums[i] == nums[i-1])
+                s += 1;
+            else
+                s = 0;
+
+            if(s < minRows)
+                lRes.get(s).add(nums[i]);
+        }
+
+        return lRes;
+    }
     
 }
