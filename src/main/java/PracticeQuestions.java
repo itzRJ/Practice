@@ -1501,5 +1501,43 @@ public class PracticeQuestions {
 
         return lRes;
     }
-    
+
+    /**
+     * Checking number of devices on each floor and multiplying
+     * @param bank floor plan with security devices
+     * @return number of beams
+     */
+    public int numberOfBeams(String[] bank) {
+        int res = 0, count1=0, count2 = 0, start = 0;
+        for(int i=0;i<bank.length;i++)
+        {
+            count1 = countOnes(bank[i]);
+            if(count1 != 0)
+            {
+                start = i;
+                break;
+            }
+        }
+
+        for(int i=start+1;i<bank.length;i++)
+        {
+            count2 = countOnes(bank[i]);
+            if(count2!=0)
+            {
+                res += (count1*count2);
+                count1 = count2;
+            }
+        }
+        return res;
+    }
+    public int countOnes(String floor)
+    {
+        int count1 = 0;
+        for(int j = 0; j<floor.length(); j++)
+            if(floor.charAt(j) == '1')
+                count1++;
+
+        return count1;
+    }
+
 }
