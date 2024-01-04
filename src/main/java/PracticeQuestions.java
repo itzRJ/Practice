@@ -1540,4 +1540,35 @@ public class PracticeQuestions {
         return count1;
     }
 
+    /**
+     * finding frequency and finding max number of triple operations and calculating answer with remaining operations
+     *
+     * @param nums number array
+     * @return minimum operations if possible else -1
+     */
+    public int minOperations(int[] nums) {
+        int res = 0;
+        HashMap<Integer, Integer> lFreq = new HashMap<>();
+        for(int i=0;i<nums.length;i++)
+        {
+            int count = 1;
+            if(lFreq.containsKey(nums[i]))
+            {
+                count = lFreq.get(nums[i]) + 1;
+            }
+            lFreq.put(nums[i], count);
+        }
+
+        for (Map.Entry entry: lFreq.entrySet())
+        {
+            Integer freq = (Integer) entry.getValue();
+            if(freq == 1)
+                return -1;
+
+            res += (freq/3);
+            if(freq%3!=0)
+                res++;
+        }
+        return res;
+    }
 }
