@@ -1647,4 +1647,40 @@ public class PracticeQuestions {
 
         return res.toString();
     }
+
+    /**
+     * Definition for singly-linked list.
+     */
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
+    //https://leetcode.com/problems/insertion-sort-list/description/
+    public ListNode insertionSortList(ListNode head) {
+        if(head == null)
+            return head;
+
+        ListNode res = new ListNode();
+        ListNode curr = head;
+        ListNode dummy = res;
+
+        while(curr != null)
+        {
+            ListNode temp = curr.next;
+
+            while(dummy.next != null && dummy.next.val < curr.val)
+                dummy = dummy.next;
+
+            curr.next = dummy.next;
+            dummy.next = curr;
+            dummy = res;
+            curr = temp;
+        }
+
+        return res.next;
+    }
 }
